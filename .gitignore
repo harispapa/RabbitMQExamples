@@ -13,3 +13,11 @@
 /MicroRabbit/.vs/MicroRabbit/DesignTimeBuild
 /MicroRabbit/MicroRabbit.Infrastructure.IoC/bin/Debug/net8.0
 /MicroRabbit/MicroRabbit.Infrastructure.IoC/obj
+/MicroRabbit/MicroRabbit.Banking.Api/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Banking.Api/obj
+/MicroRabbit/MicroRabbit.Banking.Application/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Banking.Application/obj
+/MicroRabbit/MicroRabbit.Banking.Domain/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Banking.Domain/obj
+/MicroRabbit/MicroRabiit.Banking.Infrastructure/obj
+/MicroRabbit/MicroRabiit.Banking.Infrastructure/bin/Debug/net8.0
