@@ -79,6 +79,33 @@ public sealed class RabbitMqBus(IMediator mediator) : IEventBus
 
 	private async Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
 	{
+		var eventName = @event.RoutingKey;
+		var message = Encoding.UTF8.GetString(@event.Body.ToArray());
 
+		try
+		{
+			await ProcessEvent(eventName, message).ConfigureAwait(false);
+		}
+		catch (Exception)
+		{
+			// ignored
+		}
+	}
+
+	private async Task ProcessEvent(string eventName, string message)
+	{
+		if (_handlers.TryGetValue(eventName, out var subscriptions))
+			foreach (var subscription in subscriptions)
+			{
+				var handler = Activator.CreateInstance(subscription);
+				if (handler is null)
+					continue;
+
+				var eventType = _eventTypes.SingleOrDefault(t => t.Name == eventName);
+				var @event = JsonConvert.DeserializeObject(message, eventType!);
+				var conreteType = typeof(IEventHandler<>).MakeGenericType(eventType!);
+
+				await ((Task)conreteType.GetMethod("Handle")?.Invoke(handler, [@event])!);
+			}
 	}
 }
