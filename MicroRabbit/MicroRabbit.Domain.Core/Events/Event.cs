@@ -2,5 +2,5 @@
 
 public abstract class Event
 {
-    public DateTime Timestamp { get; protected set; } = DateTime.Now;
+	public DateTime Timestamp { get; protected set; } = DateTime.Now;
 }

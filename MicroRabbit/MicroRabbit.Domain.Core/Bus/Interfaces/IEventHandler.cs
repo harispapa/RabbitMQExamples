@@ -3,9 +3,9 @@
 namespace MicroRabbit.Domain.Core.Bus.Interfaces;
 
 public interface IEventHandler<in TEvent> : IEventHandler
-    where TEvent : Event
+	where TEvent : Event
 {
-    Task Handle(TEvent @event);
+	Task Handle(TEvent @event);
 }
 
 public interface IEventHandler
