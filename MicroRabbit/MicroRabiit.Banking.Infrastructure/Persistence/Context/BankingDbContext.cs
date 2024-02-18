@@ -3,7 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MicroRabbit.Banking.Infrastructure.Persistence.Context;
 
-public class BankingDbContext(DbContextOptions options) : DbContext(options)
+public class BankingDbContext : DbContext
 {
+	public BankingDbContext(DbContextOptions<BankingDbContext> options) : base(options)
+	{
+	}
+
 	public DbSet<Account> Accounts { get; set; }
 };

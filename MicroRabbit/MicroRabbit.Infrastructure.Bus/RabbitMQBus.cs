@@ -4,8 +4,8 @@ using MicroRabbit.Domain.Core.Commands;
 using MicroRabbit.Domain.Core.Events;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
-using System.Text;
 using RabbitMQ.Client.Events;
+using System.Text;
 
 namespace MicroRabbit.Infrastructure.Bus;
 
@@ -14,7 +14,7 @@ public sealed class RabbitMqBus(IMediator mediator) : IEventBus
 	private readonly Dictionary<string, List<Type>> _handlers = new();
 	private readonly List<Type> _eventTypes = new();
 
-	public Task SendCommand<T>(T command) where T : Command => 
+	public Task SendCommand<T>(T command) where T : Command =>
 		mediator.Send(command);
 
 	public void Publish<T>(T @event) where T : Event
@@ -42,10 +42,10 @@ public sealed class RabbitMqBus(IMediator mediator) : IEventBus
 		var eventName = typeof(T).Name;
 		var handlerType = typeof(THandler);
 
-		if (!_eventTypes.Contains(typeof(T))) 
+		if (!_eventTypes.Contains(typeof(T)))
 			_eventTypes.Add(typeof(T));
 
-		if (!_handlers.ContainsKey(eventName)) 
+		if (!_handlers.ContainsKey(eventName))
 			_handlers.Add(eventName, []);
 
 		if (_handlers[eventName].Any(s => s == handlerType))
