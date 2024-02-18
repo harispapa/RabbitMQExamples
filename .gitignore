@@ -4,3 +4,5 @@
 
 /.vs
 /MicroRabbit/.vs/MicroRabbit/v17
+/MicroRabbit/MicroRabbit.Domain.Core/obj
+/MicroRabbit/.vs/MicroRabbit/FileContentIndex
