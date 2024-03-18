@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{B61D3F6E-1207-49C1-87A7-0A20A48AC334}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F373D3F6-6F14-40C4-A0A7-B5FE029B670C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F373D3F6-6F14-40C4-A0A7-B5FE029B670C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.Trasfer.Api", "MicroRabbit.Trasfer.Api\MicroRabbit.Trasfer.Api.csproj", "{6E1FDF3C-C258-465D-88DC-8C620C6781FE}"
 EndProject
