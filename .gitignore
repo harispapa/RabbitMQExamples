@@ -21,3 +21,11 @@
 /MicroRabbit/MicroRabbit.Banking.Domain/obj
 /MicroRabbit/MicroRabiit.Banking.Infrastructure/obj
 /MicroRabbit/MicroRabiit.Banking.Infrastructure/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Transfer.Application/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Transfer.Application/obj
+/MicroRabbit/MicroRabbit.Transfer.Data/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Transfer.Data/obj
+/MicroRabbit/MicroRabbit.Transfer.Domain/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Transfer.Domain/obj
+/MicroRabbit/MicroRabbit.Trasfer.Api/bin/Debug/net8.0
+/MicroRabbit/MicroRabbit.Trasfer.Api/obj
