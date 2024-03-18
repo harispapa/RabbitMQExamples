@@ -15,7 +15,7 @@ public class Program
 		builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 		// Add services to the container.
-		DependencyContainer.RegisterServices(builder.Services);
+		DependencyContainer.RegisterServices(builder.Services, ApiProject.Banking);
 
 		builder.Services.AddDbContext<BankingDbContext>(options =>
 		{

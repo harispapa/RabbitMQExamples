@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Name": "MicroRabbit.Banking.Api\\MicroRabbit.Banking.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Name": "MicroRabbit.Trasfer.Api\\MicroRabbit.Transfer.Api.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
