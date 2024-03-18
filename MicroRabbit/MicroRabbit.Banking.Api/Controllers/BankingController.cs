@@ -16,6 +16,8 @@ public class BankingController(ILogger<BankingController> logger, IAccountServic
 	[HttpPost]
 	public IActionResult Post([FromBody] AccountTransfer accountTransfer)
 	{
+		accountService.Transfer(accountTransfer);
+
 		return Ok(accountTransfer);
 	}
 }

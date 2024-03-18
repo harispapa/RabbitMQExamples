@@ -1,3 +1,4 @@
+using System.Reflection;
 using MicroRabbit.Banking.Infrastructure.Persistence.Context;
 using MicroRabbit.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ public class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 
+		builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
 		// Add services to the container.
 		DependencyContainer.RegisterServices(builder.Services);
 
@@ -22,6 +25,7 @@ public class Program
 		});
 
 		builder.Services.AddControllers();
+
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		builder.Services.AddEndpointsApiExplorer();
 		builder.Services.AddSwaggerGen(c =>
