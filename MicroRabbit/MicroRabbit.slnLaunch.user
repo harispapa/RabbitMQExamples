@@ -4,10 +4,16 @@
     "Projects": [
       {
         "Name": "MicroRabbit.Banking.Api\\MicroRabbit.Banking.Api.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": ""
       },
       {
         "Name": "MicroRabbit.Trasfer.Api\\MicroRabbit.Transfer.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": ""
+      },
+      {
+        "Name": "MicroRabbit.MVC\\MicroRabbit.MVC.csproj",
         "Action": "Start"
       }
     ]
