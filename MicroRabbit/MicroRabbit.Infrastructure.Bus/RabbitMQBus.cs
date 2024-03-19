@@ -6,10 +6,11 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MicroRabbit.Infrastructure.Bus;
 
-public sealed class RabbitMqBus(IMediator mediator) : IEventBus
+public sealed class RabbitMqBus(IMediator mediator, IServiceScopeFactory scopeFactory) : IEventBus
 {
 	private readonly Dictionary<string, List<Type>> _handlers = new();
 	private readonly List<Type> _eventTypes = new();
@@ -94,18 +95,28 @@ public sealed class RabbitMqBus(IMediator mediator) : IEventBus
 
 	private async Task ProcessEvent(string eventName, string message)
 	{
-		if (_handlers.TryGetValue(eventName, out var subscriptions))
-			foreach (var subscription in subscriptions)
+		if (_handlers.ContainsKey(eventName))
+		{
+			using (var scope = scopeFactory.CreateScope())
 			{
-				var handler = Activator.CreateInstance(subscription);
-				if (handler is null)
-					continue;
+				var subscriptions = _handlers[eventName];
 
-				var eventType = _eventTypes.SingleOrDefault(t => t.Name == eventName);
-				var @event = JsonConvert.DeserializeObject(message, eventType!);
-				var conreteType = typeof(IEventHandler<>).MakeGenericType(eventType!);
+				foreach (var subscription in subscriptions)
+				{
+					var handler = scope.ServiceProvider.GetService(subscription);
+					if (handler is null)
+						continue;
 
-				await ((Task)conreteType.GetMethod("Handle")?.Invoke(handler, [@event])!);
+					var eventType = _eventTypes.SingleOrDefault(t => t.Name == eventName);
+					var @event = JsonConvert.DeserializeObject(message, eventType!);
+					var conreteType = typeof(IEventHandler<>).MakeGenericType(eventType!);
+
+					await ((Task)conreteType.GetMethod("Handle")?.Invoke(handler, [@event])!);
+				}
 			}
+		}
+
+
+			
 	}
 }

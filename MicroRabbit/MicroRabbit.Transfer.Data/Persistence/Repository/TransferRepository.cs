@@ -9,4 +9,10 @@ public class TransferRepository(TransferDbContext dbContext) : ITransferReposito
 	public IEnumerable<TransferLog> GetTransferLogs() =>
 		dbContext.TransferLogs
 			.ToList();
+
+	public void Add(TransferLog transferLog)
+	{
+		dbContext.Add(transferLog);
+		dbContext.SaveChanges();
+	}
 }

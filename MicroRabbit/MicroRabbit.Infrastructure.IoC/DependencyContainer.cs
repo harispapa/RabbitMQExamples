@@ -30,7 +30,11 @@ public class DependencyContainer
 	public static void RegisterServices(IServiceCollection services, ApiProject project )
 	{
 		// Domain Bus
-		services.AddTransient<IEventBus, RabbitMqBus>();
+		services.AddSingleton<IEventBus, RabbitMqBus>(sp =>
+		{
+			var scopeFactory = sp.GetService<IServiceScopeFactory>();
+			return new RabbitMqBus(sp.GetService<IMediator>(), scopeFactory);
+		});
 
 		if (project == ApiProject.Banking)
 		{
@@ -47,6 +51,9 @@ public class DependencyContainer
 
 		if (project == ApiProject.Transfer)
 		{
+			// Subscriptions
+			services.AddTransient<TransferEventHandler>();
+
 			//Domain Banking Commands
 			services.AddTransient<IEventHandler<TransferCreatedEvent>, TransferEventHandler>();
 
